@@ -1,5 +1,7 @@
 --do this things as SYSDBA  
 
+-- Test für Andi
+
 --create our tablespace
 CREATE TABLESPACE SWMS
 DATAFILE
