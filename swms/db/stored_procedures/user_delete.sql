@@ -24,9 +24,7 @@ begin
 			last_name = i_last_name,
 			department = i_department,
 			employee_id = i_employee_id,
-			user_name = i_user_name,
-			update_date = sysdate,
-			update_user = i_active_user_id
+			user_name = i_user_name
 		where
 			     id = i_user_id;
 

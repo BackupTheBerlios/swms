@@ -83,7 +83,7 @@ CREATE TABLE swms.dat_activity
   id NUMBER NOT NULL,
   workflow_scheme_id NUMBER NOT NULL,
   name VARCHAR2(30) NOT NULL,
-  description VARCHAR2(30),
+  description VARCHAR2(2000),
   
   creation_date DATE NOT NULL,
   creation_user NUMBER NOT NULL,
@@ -244,8 +244,9 @@ ALTER TABLE swms.mn_role_user_assignment
  ALTER TABLE swms.dat_activity_flow
  ADD CONSTRAINT activity_flow_predecessor_fk
  FOREIGN KEY (predecessor_id)
- REFERENCES swms.dat_activity_flow (id) ENABLE
+ REFERENCES swms.dat_activity (id) ENABLE
  VALIDATE;
+ 
  
  
 /**

@@ -1,4 +1,4 @@
-CREATE OR REPLACE function user_insert 
+CREATE OR REPLACE procedure user_insert 
 (
  i_active_user_id in number,
  i_first_name in varchar2,
@@ -8,7 +8,7 @@ CREATE OR REPLACE function user_insert
  i_user_name in varchar2,
  i_password in varchar2,
  i_super_user_ind in char
-) return number as
+) as
   new_user_id number;
 begin
 
@@ -25,6 +25,5 @@ begin
 		  
 	 commit;
 	 
-	return new_user_id;
 end;
 /
