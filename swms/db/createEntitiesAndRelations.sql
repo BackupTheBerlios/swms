@@ -2,7 +2,7 @@
  * SCRIPTNAME:	createEntitiesAndRelations
  * FUNCTION:	(re)create all tables, relations and sequences
  *
- * NOTE:		Drops all table, so all existing data is lost!!!
+ * NOTE:		Drops all tables, so all existing data is lost!!!
  * 				if tables or sequences do not exist, errors occur - ignore!!
  *				
  *				
