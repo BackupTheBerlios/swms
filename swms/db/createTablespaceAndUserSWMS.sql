@@ -1,20 +1,32 @@
---do this things as SYSDBA  
+/***************************************************************************
+ * SCRIPTNAME:	createTablespaceAndUserSWMS
+ * FUNCTION:	create tablespace and user "SWMS" and assign grants 
+ *
+ * NOTE:		THIS SCRIPT MUST BE RUN as SYSDBA!
+ ***************************************************************************/
 
---create our tablespace
+--drop user SWMS
+drop user swms;
+ 
+--drop tablespace SWMS
+drop tablespace swms;
+
+--create tablespace SWMS
 CREATE TABLESPACE SWMS
 DATAFILE
-  'D:\oracle\oradata\swms\swms.dbf' SIZE 500 M 
-AUTOEXTEND ON NEXT 50 M MAXSIZE UNLIMITED
+  'D:\oracle\oradata\swms\swms.dbf' SIZE 50 M REUSE
+AUTOEXTEND ON NEXT 50 M MAXSIZE UNLIMITED;
 
---create user "SWMS"
+
+--create user "SWMS" with default TABLESPACE "SWMS"
 CREATE USER "SWMS" IDENTIFIED BY "SWMS"
  DEFAULT TABLESPACE SWMS
  TEMPORARY TABLESPACE TEMP
  PROFILE DEFAULT
- QUOTA  UNLIMITED  ON SWMS;
+ QUOTA  UNLIMITED ON SWMS;
 
 
---GRANTS für SWMS (hier funktionieren einige nicht ... ignorieren) 
+--assign (all possible) GRANTS to SWMS  
 GRANT ADMINISTER DATABASE TRIGGER TO "SWMS";
 BEGIN
 SYS.DBMS_RESOURCE_MANAGER_PRIVS.GRANT_SYSTEM_PRIVILEGE
@@ -167,8 +179,6 @@ GRANT LOCK ANY TABLE TO "SWMS";
 GRANT MANAGE TABLESPACE TO "SWMS";
 GRANT ON COMMIT REFRESH TO "SWMS";
 GRANT QUERY REWRITE TO "SWMS";
-GRANT READUP TO "SWMS";
-GRANT READUP DBHIGH TO "SWMS";
 GRANT RESTRICTED SESSION TO "SWMS";
 GRANT RESUMABLE TO "SWMS";
 GRANT SELECT ANY DICTIONARY TO "SWMS";
@@ -180,10 +190,6 @@ GRANT UNDER ANY TYPE TO "SWMS";
 GRANT UNDER ANY VIEW TO "SWMS";
 GRANT UNLIMITED TABLESPACE TO "SWMS";
 GRANT UPDATE ANY TABLE TO "SWMS";
-GRANT WRITEDOWN TO "SWMS";
-GRANT WRITEDOWN DBLOW TO "SWMS";
-GRANT WRITEUP TO "SWMS";
-GRANT WRITEUP DBHIGH TO "SWMS";
 GRANT "AQ_ADMINISTRATOR_ROLE" TO "SWMS";
 GRANT "AQ_USER_ROLE" TO "SWMS";
 GRANT "AUTHENTICATEDUSER" TO "SWMS";
@@ -214,5 +220,3 @@ GRANT "WM_ADMIN_ROLE" TO "SWMS";
 GRANT "XDBADMIN" TO "SWMS";
 
 
--- show currently open sessions on database
-select * from v$session
