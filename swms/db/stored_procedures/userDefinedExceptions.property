@@ -1,7 +1,7 @@
 ;*************************************
 ; usedException.property
 ;
-;		this is a prperty-file, that hold all 
+;		this is a property-file, that hold all 
 ;		user-defined error-numbers and what exceptions they are
 ;		
 ;		IF YOU WRITE A PL/SQL-PROCEDURE, THAT THROWS AN USER-DEFINED
@@ -9,5 +9,4 @@
 
 	
 90001=err_user_pass_combination
-90002=err_user_not_found
 90009=err_user_not_authorized

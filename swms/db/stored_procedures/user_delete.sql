@@ -1,30 +1,26 @@
-CREATE OR REPLACE procedure user_update 
+/***************************************************************************
+ * procedure user_delete
+ * 		DESCRIPTION:
+ *			deletes an existing user from the database.
+ *
+ * 		PARAMETER:	
+ *			i_active_user_id	user that performs that operation
+ *			i_user_id			user that should be deleted
+ *
+ *		RAISES:
+ *			err_user_not_authorized if the active user is NOT a superuser
+ ***************************************************************************/
+CREATE OR REPLACE procedure user_delete 
 (
  i_active_user_id number,
- i_user_id in number,
- i_first_name in varchar2,
- i_last_name in varchar2,
- i_department in varchar2,
- i_employee_id in number,
- i_user_name in varchar2
+ i_user_id in number
 ) as
 
-  err_user_pass_combination exception;
-  PRAGMA EXCEPTION_INIT(err_user_pass_combination, -90001);  
-  
 begin
 
-	 if (i_user_id <> i_active_user_id) then
-	 	user_check_superuser(i_active_user_id);
-	 end if;
+ 	user_check_superuser(i_active_user_id);
 	 
-	 update dat_user
- 		set 
-			first_name = i_first_name,
-			last_name = i_last_name,
-			department = i_department,
-			employee_id = i_employee_id,
-			user_name = i_user_name
+	delete from dat_user
 		where
 			     id = i_user_id;
 

@@ -1,3 +1,19 @@
+/***************************************************************************
+ * procedure user_login
+ * 		DESCRIPTION:
+ *			checks a user_name/password combination for login
+ *
+ * 		PARAMETER:	
+ *			i_auser_name	user_name to check
+ *			i_password		password to check
+ *
+ *		RETURNS:
+ *			the user_id of the given user
+ *
+ *		RAISES:
+ *			err_user_not_authorized if the user_name/password combination
+ *									is NOT valid. 
+ ***************************************************************************/
 CREATE OR REPLACE function user_login
 (
  i_user_name in varchar2,
@@ -20,3 +36,4 @@ begin
 	 
 	 raise err_user_not_authorized;
 end;
+/

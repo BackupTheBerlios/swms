@@ -1,3 +1,16 @@
+/***************************************************************************
+ * procedure user_check_superuser
+ * 		DESCRIPTION:
+ *			checks if the given user is a superuser.
+ *			Raises a err_user_not_authorized-exception if user is not
+ *			a superuser.
+ *
+ * 		PARAMETER:	
+ *			i_user_id	user that should me checked
+ *
+ *		RAISES:
+ *			err_user_not_authorized if giben user is NOT a superuser
+ ***************************************************************************/
 CREATE OR REPLACE procedure user_check_superuser 
 (
  i_user_id number
@@ -9,16 +22,15 @@ CREATE OR REPLACE procedure user_check_superuser
   dummy number;  
   
 begin
-	 select 1 into dummy from dat_user
+
+	 for dummy_cur in (select 1 from dat_user
 		where
 			     id = i_user_id
-			 and super_user_ind = 'Y';		 
-		
-		if (sql%rowcount <> 1) then
-		   rollback;
-		   raise err_user_not_authorized;
-		end if;
-
-		commit;
+			 and super_user_ind = 'Y') loop
+	
+	   return;
+	 end loop;
+	 
+	 raise err_user_not_authorized;
 end;
 /

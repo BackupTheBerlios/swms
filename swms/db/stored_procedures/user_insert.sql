@@ -1,3 +1,20 @@
+/***************************************************************************
+ * procedure user_insert
+ * 		DESCRIPTION:
+ *			inserts a new user into the database.
+ *
+ * 		PARAMETER:	
+ *			i_active_user_id	user that performs that operation
+ *			i_first_name		first name of the new user
+ *			i_last_name			surname of the new user
+ *			i_department		department of the new user
+ *			i_employee_id		employee id of the new user
+ *			i_user_name			username of the new user
+ *			i_password			password of the new user
+ *
+ *		RAISES:
+ *			err_user_not_authorized if the active user is NOT a superuser
+ ***************************************************************************/
 CREATE OR REPLACE procedure user_insert 
 (
  i_active_user_id in number,
@@ -12,10 +29,9 @@ CREATE OR REPLACE procedure user_insert
   new_user_id number;
 begin
 
-	 user_check_superuser(i_active_user_id);
+ 	 user_check_superuser(i_active_user_id);
 
-	 
-	select seq_user_id.nextval into new_user_id from dual;
+	 select seq_user_id.nextval into new_user_id from dual;
 		 	 
 	 insert into dat_user
 		 (id, first_name, last_name, department, employee_id, user_name, password, super_user_ind, creation_date, creation_user)
