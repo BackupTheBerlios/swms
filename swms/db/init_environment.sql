@@ -213,3 +213,6 @@ GRANT "WKUSER" TO "SWMS";
 GRANT "WM_ADMIN_ROLE" TO "SWMS";
 GRANT "XDBADMIN" TO "SWMS";
 
+
+-- show currently open sessions on database
+select * from v$session
